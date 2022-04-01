@@ -1,5 +1,5 @@
-block_queue: block_queue.cc
-	g++ -o $@ $^
+main: main.cc
+	g++ -o $@ $^ -lpthread
 .PHONY: clean
 clean:
-	rm -f block_queue
+	rm -f main 
