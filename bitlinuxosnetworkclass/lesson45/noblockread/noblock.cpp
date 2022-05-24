@@ -31,6 +31,9 @@ int main()
       sleep(3);
       continue;
     }
+    else if(errno == EINTR) {
+      std::cout << "signal interrupt" << std::endl;
+    }
     else {
       std::cerr << "read: " << ss << std::endl;
       std::cerr << "errno: " << errno << std::endl;
