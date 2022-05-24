@@ -24,8 +24,16 @@ int main()
     if(ss > 0) {
       buffer[ss - 1] = 0;
       std::cout << buffer << std::endl;; 
+      sleep(3);
+    }
+    else if(errno == EAGAIN || errno == EWOULDBLOCK) {
+      std::cout << "no data" << std::endl;
+      sleep(3);
+      continue;
     }
     else {
+      std::cerr << "read: " << ss << std::endl;
+      std::cerr << "errno: " << errno << std::endl;
       std::cerr << "read error" << std::endl;
       break;
     }
