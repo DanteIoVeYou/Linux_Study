@@ -97,6 +97,7 @@ namespace ns_select_server
           }
         }
       }
+
     private:
       void Handler(int sock, int i) {
         char buffer[BUFFER_SIZE] = {0};
@@ -119,6 +120,7 @@ namespace ns_select_server
           std::cout << "sock " << sock << "# " << buffer;;
         }
       }
+
     private:
       int _listen_sock;
       uint16_t _port;
