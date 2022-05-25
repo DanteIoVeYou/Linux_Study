@@ -21,6 +21,12 @@ namespace ns_select_server
         _fd_array[0] = _listen_sock;
       }
 
+      ~SelectServer() {
+        if(_listen_sock > 0) {
+          close(_listen_sock);
+        }
+      }
+
       void Loop() {
         while(true) {
           // 设置读事件的位图
