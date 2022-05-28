@@ -17,8 +17,10 @@ namespace ns_socket {
       static int Create() {
         int sock = socket(AF_INET, SOCK_STREAM, 0);
         if(sock < 0) {
+          std::cerr << "socket error" << std::endl;
           exit(11);
         }
+        
         return sock;
       }
 
@@ -28,7 +30,10 @@ namespace ns_socket {
         local.sin_family = AF_INET;
         local.sin_port = htons(port);
         local.sin_addr.s_addr = INADDR_ANY;
+        int opt = 1;
+        setsockopt(listen_sock, SOL_SOCKET, SO_REUSEPORT, &opt, sizeof(opt));
         if(bind(listen_sock, (struct sockaddr*)&local, sizeof(local)) < 0) {
+          std::cerr << "bind error" << std::endl;
           exit(12);
         }
       }
