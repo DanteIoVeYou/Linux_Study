@@ -7,7 +7,7 @@
 #include <fcntl.h>
 // 对应的套接字封装成的一个类，保存了套接字的信息
 class Event;
-class Epoll;
+class Reactor;
 typedef void (*CallBack)(Event &);
 
 // 将文件描述符封装起来
@@ -33,17 +33,17 @@ public:
     CallBack _recv = nullptr;
     CallBack _send = nullptr;
     CallBack _except = nullptr;
-    Epoll *R = nullptr;
+    Reactor *R = nullptr;
 };
 
 // 承担了Epoll框架的责任
-class Epoll
+class Reactor
 {
 public:
-    Epoll() {}
-    ~Epoll() {}
+    Reactor() {}
+    ~Reactor() {}
     // 创建Epoll框架
-    void EpollInit()
+    void ReactorInit()
     {
         _epfd = epoll_create(128);
         if (_epfd < 0)

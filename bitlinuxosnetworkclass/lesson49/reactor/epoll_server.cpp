@@ -4,9 +4,9 @@
 int main()
 {
   // 1.创建epoll模型
-  Epoll *ep = new Epoll;
+  Reactor *ep = new Reactor;
   // 2.初始化
-  ep->EpollInit();
+  ep->ReactorInit();
   // 3.创建监听套接字
   int listen_sock = Sock::Socket();
   Sock::Bind(listen_sock, 8081);
